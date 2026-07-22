@@ -22,6 +22,33 @@ const tmdb = axios.create({
   },
 });
 
+// ─── Interceptor ──────────────────────────────────────────────────────────────
+/**
+ * Interceptor này sẽ tự động chuyển URL của request (ví dụ: '/movie/popular')
+ * thành một query param `path`. Điều này cho phép chúng ta sử dụng một API route
+ * duy nhất (`/api/tmdb`) thay vì dynamic route, giúp tương thích tốt hơn.
+ *
+ * Ví dụ: `tmdb.get('/movie/popular', { params: { page: 1 } })`
+ * sẽ được chuyển thành: `GET /api/tmdb?path=movie/popular&page=1`
+ */
+tmdb.interceptors.request.use((config) => {
+  if (config.url) {
+    // Đảm bảo params tồn tại
+    config.params = config.params || {};
+
+    // Lấy path từ URL, bỏ dấu / ở đầu nếu có
+    const path = config.url.startsWith('/') ? config.url.substring(1) : config.url;
+
+    // Gán vào query param `path`
+    config.params.path = path;
+
+    // Reset URL để request đi tới baseURL (/api/tmdb)
+    config.url = '';
+  }
+  return config;
+});
+
+
 export default tmdb;
 
 /**
