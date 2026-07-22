@@ -9,10 +9,18 @@ A modern, responsive movie discovery web app built with React, TypeScript, and t
 
 ## 📸 Screenshots
 
-![Home](./screenshots/home.png)
-![Detail](./screenshots/detail.png)
-![Search](./screenshots/search.png)
+<div align="center">
 
+<img src="./screenshots/home.png" alt="Home page" width="100%">
+<p><b>Home</b> — Hero banner and movie grid with tab filtering</p>
+
+<img src="./screenshots/detail.png" alt="Movie detail page" width="100%">
+<p><b>Movie Detail</b> — Cast, trailer, and similar movies</p>
+
+<img src="./screenshots/search.png" alt="Search page" width="100%">
+<p><b>Search</b> — Live search with sort and filter options</p>
+
+</div>
 
 ---
 
