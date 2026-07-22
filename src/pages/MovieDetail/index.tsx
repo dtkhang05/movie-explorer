@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   useMovieDetail,
   useMovieCredits,
@@ -9,7 +9,6 @@ import {
 import { useFavorites } from '../../hooks/useFavorites';
 import { MovieCard } from '../../components/MovieCard';
 import { GenreBadgeList } from '../../components/GenreBadge';
-import { PageLoader } from '../../components/LoadingSpinner';
 import { MovieDetailSkeleton } from '../../components/Skeleton';
 import { getBackdropUrl, getImageUrl, getProfileUrl } from '../../api/tmdb';
 import {

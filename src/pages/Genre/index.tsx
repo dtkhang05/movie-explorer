@@ -7,7 +7,7 @@ import FadeInView from '../../components/FadeInView';
 import { useDiscoverByGenre, useGenres } from '../../hooks/useMovies';
 import { useFavorites } from '../../hooks/useFavorites';
 
-const MAX_PAGES = 20;
+
 
 const GenrePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

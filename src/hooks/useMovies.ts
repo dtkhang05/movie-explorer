@@ -1,6 +1,5 @@
 import {
   useQuery,
-  useInfiniteQuery,
   type UseQueryResult,
 } from '@tanstack/react-query';
 import {
@@ -18,7 +17,7 @@ import {
   discoverMovies,
   type DiscoverOptions,
 } from '../services/movieService';
-import type { Movie, MovieDetail, Genre, Cast, Video, PaginatedResponse } from '../types';
+import type { MovieDetail } from '../types';
 
 // ─── Query key factory (prevents stale cache collisions) ──────────────────────
 export const movieKeys = {
