@@ -1,69 +1,46 @@
 import axios from 'axios';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-
-const BASE_URL = 'https://api.themoviedb.org/3';
+const BASE_URL = '/api/tmdb'; // Trỏ tới proxy function của Vercel
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 
-const ACCESS_TOKEN = import.meta.env.VITE_TMDB_ACCESS_TOKEN as string;
+const PLACEHOLDER_POSTER_URL = '/placeholder-poster.png';
+const PLACEHOLDER_BACKDROP_URL = '/placeholder-backdrop.png';
+const PLACEHOLDER_PROFILE_URL = '/placeholder-profile.png';
 
 // ─── Axios instance ───────────────────────────────────────────────────────────
 
 /**
- * Pre-configured axios instance for TMDB API v3.
- * Uses Bearer token auth (v4 header) — more secure than api_key query param.
+ * Cấu hình axios instance cho phía client.
+ * Mọi request sẽ được gửi tới proxy function của chúng ta tại `/api/tmdb`
+ * thay vì gọi trực tiếp tới TMDB API.
  */
-export const tmdb = axios.create({
+const tmdb = axios.create({
   baseURL: BASE_URL,
   headers: {
-    Authorization: `Bearer ${ACCESS_TOKEN}`,
     'Content-Type': 'application/json',
-  },
-  params: {
-    language: 'en-US',
   },
 });
 
-// ─── Response interceptor for error handling ──────────────────────────────────
-
-tmdb.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const message =
-      error.response?.data?.status_message ?? error.message ?? 'Unknown error';
-    console.error('[TMDB API Error]', message);
-    return Promise.reject(new Error(message));
-  }
-);
-
-// ─── Image URL helpers ────────────────────────────────────────────────────────
-
-type ImageSize = 'w92' | 'w154' | 'w185' | 'w342' | 'w500' | 'w780' | 'original';
-type BackdropSize = 'w300' | 'w780' | 'w1280' | 'original';
-type ProfileSize = 'w45' | 'w185' | 'h632' | 'original';
-
-export const getImageUrl = (
-  path: string | null | undefined,
-  size: ImageSize = 'w500'
-): string => {
-  if (!path) return '/placeholder-movie.svg';
-  return `${IMAGE_BASE_URL}/${size}${path}`;
-};
-
-export const getBackdropUrl = (
-  path: string | null | undefined,
-  size: BackdropSize = 'w1280'
-): string => {
-  if (!path) return '/placeholder-backdrop.svg';
-  return `${IMAGE_BASE_URL}/${size}${path}`;
-};
-
-export const getProfileUrl = (
-  path: string | null | undefined,
-  size: ProfileSize = 'w185'
-): string => {
-  if (!path) return '/placeholder-person.svg';
-  return `${IMAGE_BASE_URL}/${size}${path}`;
-};
-
 export default tmdb;
+
+/**
+ * Hàm tiện ích để tạo URL đầy đủ cho ảnh poster từ TMDB.
+ * Trả về một ảnh placeholder nếu path là null.
+ */
+export const getImageUrl = (path: string | null, size: 'w92' | 'w154' | 'w185' | 'w342' | 'w500' | 'w780' | 'original' = 'w500') =>
+  path ? `${IMAGE_BASE_URL}/${size}${path}` : PLACEHOLDER_POSTER_URL;
+
+/**
+ * Hàm tiện ích để tạo URL đầy đủ cho ảnh backdrop từ TMDB.
+ * Trả về một ảnh placeholder nếu path là null.
+ */
+export const getBackdropUrl = (path: string | null, size: 'w300' | 'w780' | 'w1280' | 'original' = 'original') =>
+  path ? `${IMAGE_BASE_URL}/${size}${path}` : PLACEHOLDER_BACKDROP_URL;
+
+/**
+ * Hàm tiện ích để tạo URL đầy đủ cho ảnh profile (diễn viên) từ TMDB.
+ * Trả về một ảnh placeholder nếu path là null.
+ */
+export const getProfileUrl = (path: string | null, size: 'w45' | 'w185' | 'h632' | 'original' = 'original') =>
+  path ? `${IMAGE_BASE_URL}/${size}${path}` : PLACEHOLDER_PROFILE_URL;

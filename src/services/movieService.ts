@@ -66,8 +66,8 @@ export const getMovieCredits = async (
 export const getMovieVideos = async (id: number): Promise<Video[]> => {
   const { data } = await tmdb.get<VideosResponse>(`/movie/${id}/videos`);
   // Return official YouTube trailers first
-  return data.results.filter(
-    (v) => v.site === 'YouTube' && v.type === 'Trailer'
+  return data.results.filter((v: Video) =>
+    v.site === 'YouTube' && v.type === 'Trailer'
   );
 };
 
