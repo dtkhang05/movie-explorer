@@ -3,7 +3,7 @@
 A modern, responsive movie discovery web app built with React, TypeScript, and the TMDB API. Browse trending, popular, top-rated, and upcoming movies, search with live filtering, save favorites, and explore detailed movie pages with cast, trailers, and recommendations.
 
 **🔗 Live Demo:** [https://movie-explorer-three-rho.vercel.app/]
-**📦 Repository:** [add your GitHub link here]
+**📦 Repository:** [https://github.com/dtkhang05/movie-explorer/tree/main]
 
 ---
 
