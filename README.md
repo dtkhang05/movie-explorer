@@ -9,13 +9,10 @@ A modern, responsive movie discovery web app built with React, TypeScript, and t
 
 ## 📸 Screenshots
 
-> Add 2–4 screenshots here: Home page (hero + grids), Search page, Movie Detail page, Favorites page, and dark/light mode side-by-side if applicable.
-
-```
 ![Home](./screenshots/home.png)
 ![Detail](./screenshots/detail.png)
 ![Search](./screenshots/search.png)
-```
+
 
 ---
 
