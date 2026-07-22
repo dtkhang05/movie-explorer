@@ -5,7 +5,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3';
-const TMDB_ACCESS_TOKEN = process.env.VITE_TMDB_ACCESS_TOKEN;
+const TMDB_ACCESS_TOKEN = process.env.TMDB_ACCESS_TOKEN;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!TMDB_ACCESS_TOKEN) {
