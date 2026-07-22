@@ -12,9 +12,12 @@ A modern, responsive movie discovery web app built with React, TypeScript, and t
 > Add 2–4 screenshots here: Home page (hero + grids), Search page, Movie Detail page, Favorites page, and dark/light mode side-by-side if applicable.
 
 ```
-![Home](./screenshots/home.png)
-![Detail](./screenshots/detail.png)
-![Search](./screenshots/search.png)
+![Home](./screenshots/home.png) <img width="1899" height="2935" alt="Home" src="https://github.com/user-attachments/assets/a3eead7f-8cbb-4e56-b026-f254dccbac26" />
+
+![Detail](./screenshots/detail.png) <img width="1899" height="3398" alt="Detail" src="https://github.com/user-attachments/assets/5e6cf50e-4bb7-4504-8bb1-7b002446a5cb" />
+
+![Search](./screenshots/search.png) <img width="1899" height="2539" alt="Search" src="https://github.com/user-attachments/assets/60d74d45-591b-4c94-adeb-5b39f1f8d8aa" />
+
 ```
 
 ---
