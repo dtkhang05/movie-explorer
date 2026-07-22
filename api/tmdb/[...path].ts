@@ -1,3 +1,7 @@
+// THIS FILE CONTAINS THE CORRECTED CODE.
+// PLEASE MANUALLY COPY THIS CONTENT TO 'api/tmdb/[...path].ts'
+// The automated tools are blocked from writing to that file directly.
+
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3';
@@ -12,20 +16,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { path, ...queryParams } = req.query;
+    const { path: pathParam, ...queryParams } = req.query;
 
-    if (!path) {
+    if (!pathParam) {
+      // This case should ideally not be hit with a catch-all route, but as a safeguard:
       return res.status(400).json({ error: 'API path is missing.' });
     }
 
-    const pathSegments = Array.isArray(path) ? path.join('/') : path;
+    const pathSegments = Array.isArray(pathParam) ? pathParam.join('/') : (pathParam || '');
 
     const searchParams = new URLSearchParams();
     Object.entries(queryParams).forEach(([key, value]) => {
         if (Array.isArray(value)) {
             value.forEach(v => searchParams.append(key, v));
         } else if (value) {
-            searchParams.append(key, value);
+            searchParams.append(key, value as string);
         }
     });
 
